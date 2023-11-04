@@ -34,3 +34,6 @@
 - アプリケーションの実装に使用したgem/bootstrapのリファレンスなどの記載は不要です。
 - 使用しない場合は、使用素材の項目をREADMEから削除してください。
 折りたたむ
+
+実装機能リストのURL
+https://docs.google.com/spreadsheets/d/12v9V_UBiFKLw4wIRvcXymAAKps-opYA7TDIMM1xHHv8/edit#gid=375590402
