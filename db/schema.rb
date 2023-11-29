@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_29_055548) do
+ActiveRecord::Schema.define(version: 2023_11_29_065236) do
 
   create_table "genres", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -18,6 +18,20 @@ ActiveRecord::Schema.define(version: 2023_11_29_055548) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_genres_on_user_id"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.date "expiration_date"
+    t.date "purchase_date"
+    t.float "quantity", null: false
+    t.string "unit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_ingredients_on_genre_id"
+    t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,4 +51,6 @@ ActiveRecord::Schema.define(version: 2023_11_29_055548) do
   end
 
   add_foreign_key "genres", "users"
+  add_foreign_key "ingredients", "genres"
+  add_foreign_key "ingredients", "users"
 end
