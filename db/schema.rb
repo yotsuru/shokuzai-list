@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_29_065236) do
+ActiveRecord::Schema.define(version: 2023_11_30_080923) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "ingredient_id", null: false
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ingredient_id"], name: "index_comments_on_ingredient_id"
+  end
 
   create_table "genres", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -50,6 +58,7 @@ ActiveRecord::Schema.define(version: 2023_11_29_065236) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "ingredients"
   add_foreign_key "genres", "users"
   add_foreign_key "ingredients", "genres"
   add_foreign_key "ingredients", "users"
