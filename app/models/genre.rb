@@ -1,6 +1,6 @@
 class Genre < ApplicationRecord
-    has_many :ingredients
+    has_many :ingredients, dependent: :destroy
     belongs_to :user
      
-    validates :name, presence: true
+    validates :user_id, :name, presence: true
 end
