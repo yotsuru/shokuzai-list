@@ -1,4 +1,7 @@
 <h1><%= @genre.name %></h1>
+
+<%= link_to "ジャンル名を変更する", edit_genre_path(@genre.id) %>
+
 <%= link_to "このジャンルを削除する", genre_path(@genre.id), method: :delete, 
 "data-confirm" => "ジャンルを削除すると食材のデータも削除されます。本当によろしいですか？" %>
     
@@ -22,6 +25,6 @@
               <td><%= link_to "削除する", ingredient_path(ingredient.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
             </tr>
            <% end %>
-	  </tbody>
+	    </tbody>
     </table>
 
