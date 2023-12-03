@@ -1,16 +1,16 @@
-<h1>Users::Genres#index</h1>
+<h1>全ジャンル　一覧</h1>
 <%= form_with model: @genre, url: genres_path, method: :post do |f| %>
     <div class="form-group">
-        <%= f.label :name %>
+        <%= f.label :ジャンル登録 %>
         <%= f.text_field :name %>
     </div>
     <div class="form-group">
-        <%= f.submit "登録" %>
+        <%= f.submit "登録する" %>
     </div>
 <% end %>
 
 <ul>
     <% @genres.each do |genre| %>
-        <li><%= genre.name %></li>
+        <li><%= link_to genre.name, genre_path(genre.id) %></li>
     <% end %>
 </ul>

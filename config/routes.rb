@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :ingredients do
       resources :comments, only: [:create, :destroy]
     end
-    resources :genres, only: [:index, :create, :edit, :update, :destroy]
+    resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
   end
   
   devise_for :users, controllers: {

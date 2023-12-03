@@ -14,6 +14,13 @@ class Users::GenresController < ApplicationController
       render :index
     end
   end
+  
+  def show
+    @genre = Genre.find(params[:id])
+    #@ingredients = Ingredient.find(params[:id])
+    #@ingredients = Genre.ingredient.all
+     @ingredients = Ingredient.all
+  end
 
   def edit
   end
