@@ -21,9 +21,14 @@ class Users::IngredientsController < ApplicationController
   end
 
   def edit
+    @ingredient = Ingredient.find(params[:id])
   end
   
   def update
+    ingredient = Ingredient.find(params[:id])
+    ingredient.update(ingredient_params)
+    genre = ingredient.genre
+    redirect_to genre_path(genre.id)  
   end
   
   def destroy
