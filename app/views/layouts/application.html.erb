@@ -17,9 +17,9 @@
         <li><%= link_to "新規登録", new_user_registration_path %></li>
         <li><%= link_to "ログイン", new_user_session_path %></li>
         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-        <li><%= link_to "食財登録", new_ingredient_path %></li>
-        <li><%= link_to "食財一覧", ingredients_path %></li>
-        <li><%= link_to "食財ジャンル", genres_path %></li>
+        <li><%= link_to "食材登録", new_ingredient_path %></li>
+        <li><%= link_to "食材一覧", ingredients_path %></li>
+        <li><%= link_to "ジャンル一覧", genres_path %></li>
       </ul>
     </header>
     <%= yield %>

@@ -17,9 +17,8 @@ class Users::GenresController < ApplicationController
   
   def show
     @genre = Genre.find(params[:id])
-    #@ingredients = Ingredient.find(params[:id])
-    #@ingredients = Genre.ingredient.all
-     @ingredients = Ingredient.all
+    #各ジャンルに属した食材
+    @ingredients = @genre.ingredients
   end
 
   def edit
