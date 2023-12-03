@@ -28,6 +28,9 @@ class Users::GenresController < ApplicationController
   end
   
   def destroy
+    genre = Genre.find(params[:id])
+    genre.destroy
+    redirect_to genres_path
   end
   
   private
