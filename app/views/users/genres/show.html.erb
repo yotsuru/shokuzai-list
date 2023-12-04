@@ -12,6 +12,7 @@
 	      	  <th>購入日</th>
 		      <th>賞味期限</th>
 		      <th>数量</th>
+		      <th>メモ</th>
 		      <th></th>
 		      <th></th>
 		    </tr>
@@ -23,6 +24,11 @@
               <td><%= ingredient.purchase_date %></td>
               <td><%= ingredient.expiration_date %></td>
               <td><%#= ingredient.quantity %><%= number_with_precision(ingredient.quantity, precision: 1) %><%= ingredient.unit %></td>
+              <td><%= form_with model: [@ingredient, @comment] do |f| %>
+                  <%= f.text_area :comment, rows: '2', placeholder: "メモ" %>
+                  <%= f.submit "メモを保存する" %>
+                  <% end %>
+              </td>
               <td><%= link_to "編集する", edit_ingredient_path(ingredient.id) %></td>
               <td><%= link_to "削除する", ingredient_path(ingredient.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
             </tr>
