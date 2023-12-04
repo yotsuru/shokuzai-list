@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   
   scope module: :users do
     resources :ingredients do
-      resources :comments, only: [:create, :destroy]
+      resources :comments, only: [:create, :edit, :update, :destroy]
     end
     resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
   end

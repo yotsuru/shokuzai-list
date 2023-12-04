@@ -20,7 +20,7 @@ class Users::GenresController < ApplicationController
     #各ジャンルに属した食材
     @ingredients = @genre.ingredients
     #食材のメモ機能
-    @ingredient = Ingredient
+    # @ingredient = Ingredient
     @comment = Comment.new
     
   end
