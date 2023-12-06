@@ -1,17 +1,19 @@
 <h2>検索結果</h2>
 
+
 <table class="table table-hover table-inverse">
   <!--検索対象モデルがGenreの時 -->
-  <% if @range == "Genre" %>
-  　<tbody>
+<% if @range == "Genre" %>
+    <tbody>
       <% @genres.each do |genre| %>
         <tr>
           <td><%= genre.name %></td>
         </tr>
       <% end %>
     </tbody>
-  <% else %>
+<% else %>
     <!--検索対象モデルがGenreではない時(= 検索対象モデルがIngredientの時) -->
+  <% if @ingredients.present? %>
     <thead>
 		    <tr>
 		      <th>食材</th>
@@ -21,7 +23,7 @@
 		      <th>数量</th>
 		      <th>メモ</th>
 		    </tr>
-	</thead>
+	  </thead>
     <tbody>
       <% @ingredients.each do |ingredient| %>
         <tr>
@@ -38,7 +40,11 @@
                 <% end %>
          </td>
         </tr>
-      <% end %>
-    </tbody>
+       <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="text-center">該当する食材は登録されていません。</div>
+    登録する場合は<%= link_to "こちら", new_ingredient_path %>
   <% end %>
-</table>
+<% end %>

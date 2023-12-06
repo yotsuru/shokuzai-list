@@ -4,6 +4,7 @@
 
 <%= link_to "このジャンルを削除する", genre_path(@genre.id), method: :delete, 
 "data-confirm" => "ジャンルを削除するとジャンル内の全ての食材のデータも削除されます。本当によろしいですか？" %>
+    
     <% if @ingredients.present? %>
     <table class="table table-hover table-bordered table-condensed">
       <thead>
