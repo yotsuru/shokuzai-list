@@ -12,8 +12,9 @@ class Users::IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.user_id = current_user.id
+    genre = @ingredient.genre
     if @ingredient.save
-      redirect_to ingredients_path
+      redirect_to genre_path(genre.id)
     else
       render :new
     end
