@@ -1,4 +1,5 @@
 class Users::GenresController < ApplicationController
+  
   def index
     @genres = current_user.genres
     @genre = Genre.new
@@ -20,7 +21,6 @@ class Users::GenresController < ApplicationController
     #各ジャンルに属した食材
     @ingredients = @genre.ingredients
     #食材のメモ機能
-    # @ingredient = Ingredient
     @comment = Comment.new
     
   end

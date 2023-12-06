@@ -10,7 +10,9 @@ class SearchesController < ApplicationController
       @ingredients = Ingredient.looks(params[:search], params[:name])
     end
     
+    
     @comment = Comment.new
+    
   end
 end
 

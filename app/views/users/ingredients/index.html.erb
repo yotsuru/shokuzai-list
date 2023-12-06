@@ -1,6 +1,33 @@
 <h2>食材一覧</h2>
-<ul>
-    <% @ingredients.each do |ingredient| %>
-        <li><%= ingredient.name %></li>
-    <% end %>
-</ul>
+<table class="table table-hover table-bordered table-condensed">
+      <thead>
+		    <tr>
+		      <th>食材</th>
+		      <th>ジャンル</th>
+	      	　<th>購入日</th>
+		      <th>賞味期限</th>
+		      <th>数量</th>
+		      <th>メモ</th>
+		      <th></th>
+		      <th></th>
+		    </tr>
+      </thead>
+      <tbody>
+        <% @ingredients.each do |ingredient| %>
+            <tr>
+              <td><%= ingredient.name %></td>
+              <td><%= ingredient.genre %></td>
+              <!-- 日付設定がされていない場合blank、されている場合は表示する-->
+              <td><%= ingredient.purchase_date.blank? ? "" : ingredient.purchase_date.strftime("%Y/%m/%d") %></td>
+              <td><%= ingredient.expiration_date.blank? ? "" : ingredient.expiration_date.strftime("%Y/%m/%d") %></td>
+              <td><%= ActiveSupport::NumberHelper.number_to_rounded(ingredient.quantity, strip_insignificant_zeros: true) %><%= ingredient.unit %></td>
+              <% comment = ingredient.comments.first || @comment %>
+              <td>
+                <%= form_with model: [ingredient, comment] do |f| %>
+                  <%= f.text_area :comment, rows: '2', placeholder: "メモ" %>
+                  <%= f.submit "メモを更新する" %>
+                <% end %>
+              </td>
+              <td><%= link_to "編集する", edit_ingredient_path(ingredient.id) %></td>
+              <td><%= link_to "削除する", ingredient_path(ingredient.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+    　　　<% end %>

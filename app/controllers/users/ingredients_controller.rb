@@ -1,6 +1,8 @@
 class Users::IngredientsController < ApplicationController
+  
   def index
     @ingredients = current_user.ingredients
+    @comment = Comment.new
   end
   
   def new
@@ -15,9 +17,6 @@ class Users::IngredientsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
   end
 
   def edit
