@@ -9,6 +9,8 @@ class SearchesController < ApplicationController
     else
       @ingredients = Ingredient.looks(params[:search], params[:name])
     end
+    
+    @comment = Comment.new
   end
 end
 

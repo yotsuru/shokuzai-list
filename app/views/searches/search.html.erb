@@ -1,6 +1,15 @@
 <h2>検索結果</h2>
 
 <table class="table table-hover table-inverse">
+    <thead>
+		    <tr>
+		      <th>食材</th>
+	      	  <th>購入日</th>
+		      <th>賞味期限</th>
+		      <th>数量</th>
+		      <th>メモ</th>
+		    </tr>
+	</thead>
   <!--検索対象モデルがGenreの時 -->
   <% if @range == "Genre" %>
     <tbody>
@@ -16,8 +25,16 @@
       <% @ingredients.each do |ingredient| %>
         <tr>
          <td><%= ingredient.name %></td>
-         <td><%= ingredient.purchase_date %></td>
-         <td><%= ingredient.expiration_date %></td>
+         <td><%= ingredient.purchase_date.blank? ? "" : ingredient.purchase_date.strftime("%Y/%m/%d") %></td>
+         <td><%= ingredient.expiration_date.blank? ? "" : ingredient.expiration_date.strftime("%Y/%m/%d") %></td>
+         <td><%= ActiveSupport::NumberHelper.number_to_rounded(ingredient.quantity, strip_insignificant_zeros: true) %><%= ingredient.unit %></td>
+         <% comment = ingredient.comments.first || @comment %>
+         <td>
+                <%= form_with model: [ingredient, comment] do |f| %>
+                  <%= f.text_area :comment, rows: '2', placeholder: "メモ" %>
+                  <%= f.submit "メモを更新する" %>
+                <% end %>
+         </td>
         </tr>
       <% end %>
     </tbody>
