@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   
   scope module: :users do
     resources :ingredients do
-      resources :comments, only: [:create, :edit, :update, :destroy]
+      resources :comments, only: [:create, :update]
     end
-    resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
+    resources :genres, except: [:new]
   end
   
   devise_for :users, controllers: {

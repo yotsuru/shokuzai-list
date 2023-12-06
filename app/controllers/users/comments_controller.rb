@@ -11,10 +11,6 @@ class Users::CommentsController < ApplicationController
     redirect_to request.referer
   end
   
-  def edit
-    @comment = Comment.find(params[:id])
-  end
-  
   def update
     comment = Comment.find(params[:id])
     comment.update(comment_params)
@@ -22,16 +18,6 @@ class Users::CommentsController < ApplicationController
     #redirect_to genre_path(genre.id)
     redirect_to request.referer
   end
-  
-  def destroy
-    comment = Comment.find(params[:id])
-    comment.destroy
-    
-    redirect_to request.referer
-  end
-  
-  
-  
   
   private
 
