@@ -12,9 +12,9 @@ class Users::IngredientsController < ApplicationController
      @ingredients = Ingredient.purchase_date_latest
     elsif params[:purchase_date_old]#購入日が古い順
      @ingredients = Ingredient.purchase_date_old
-    elsif params[:expiration_date_latest]#賞味期限が近い順
+    elsif params[:expiration_date_latest]#賞味期限が遠い順
      @ingredients = Ingredient.expiration_date_latest
-    elsif params[:expiration_date_old]#賞味期限が遠い順
+    elsif params[:expiration_date_old]#賞味期限が近い順
      @ingredients = Ingredient.expiration_date_old
     else
      @ingredients = Ingredient.all

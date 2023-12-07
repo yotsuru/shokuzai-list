@@ -3,9 +3,15 @@
 <%= link_to "ジャンル名を変更する", edit_genre_path(@genre.id) %>
 
 <%= link_to "このジャンルを削除する", genre_path(@genre.id), method: :delete, 
-"data-confirm" => "ジャンルを削除するとジャンル内の全ての食材のデータも削除されます。本当によろしいですか？" %>
+"data-confirm" => "ジャンルを削除するとジャンル内の全ての食材のデータも削除されます。本当によろしいですか？" %><br>
     
-    <% if @ingredients.present? %>
+<% if @ingredients.present? %>
+    <%= link_to '新しい順', genre_path(@genre.id,latest: "true") %>
+    |<%= link_to '古い順', genre_path(@genre.id,old: "true") %>
+    |<%= link_to '購入日が新しい順', genre_path(@genre.id,purchase_date_latest: "true") %>
+    |<%= link_to '購入日が古い順', genre_path(@genre.id,purchase_date_old: "true") %>
+    |<%= link_to '賞味期限が遠い順', genre_path(@genre.id,expiration_date_latest: "true") %>
+    |<%= link_to '賞味期限が近い順', genre_path(@genre.id,expiration_date_old: "true") %>
     <table class="table table-hover table-bordered table-condensed">
       <thead>
 		    <tr>
@@ -36,11 +42,11 @@
               <td><%= link_to "編集する", edit_ingredient_path(ingredient.id) %></td>
               <td><%= link_to "削除する", ingredient_path(ingredient.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
             </tr>
-           <% end %>
+        <% end %>
 	    </tbody>
     </table>
-    <% else %>
+<% else %>
     <div class="text-center">このジャンルに食材は登録されていません。</div>
     登録する場合は<%= link_to "こちら", new_ingredient_path %>
-    <% end %>
+<% end %>
 

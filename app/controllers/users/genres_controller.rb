@@ -21,6 +21,22 @@ class Users::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     #各ジャンルに属した食材
     @ingredients = @genre.ingredients
+     
+     if params[:latest]#登録が新しい順
+      @ingredients = @genre.ingredients.latest
+     elsif params[:old]#登録が古い順
+      @ingredients = @genre.ingredients.old
+     elsif params[:purchase_date_latest]#購入日が新しい順
+      @ingredients = @genre.ingredients.purchase_date_latest
+     elsif params[:purchase_date_old]#購入日が古い順
+      @ingredients = @genre.ingredients.purchase_date_old
+     elsif params[:expiration_date_latest]#賞味期限が遠い順
+      @ingredients = @genre.ingredients.expiration_date_latest
+     elsif params[:expiration_date_old]#賞味期限が近い順
+      @ingredients = @genre.ingredients.expiration_date_old
+     else
+      @ingredients = @genre.ingredients
+     end
     #食材のメモ機能
     @comment = Comment.new
     

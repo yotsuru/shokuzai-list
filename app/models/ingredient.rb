@@ -14,7 +14,7 @@ class Ingredient < ApplicationRecord
   # 購入日の新しい順、古い順
   scope :purchase_date_latest, -> {order(purchase_date: :desc)}
   scope :purchase_date_old, -> {order(purchase_date: :asc)}
-  # 賞味期限の近い順、遠い順
+  # 賞味期限の遠い順、近い順
   scope :expiration_date_latest, -> {order(expiration_date: :desc)}
   scope :expiration_date_old, -> {order(expiration_date: :asc)}
   
