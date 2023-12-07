@@ -28,7 +28,7 @@
       <% @ingredients.each do |ingredient| %>
         <tr>
          <td><%= ingredient.name %></td>
-         <td><%#= ingredient.genre %></td>
+         <td><%= ingredient.genre %></td>
          <td><%= ingredient.purchase_date.blank? ? "" : ingredient.purchase_date.strftime("%Y/%m/%d") %></td>
          <td><%= ingredient.expiration_date.blank? ? "" : ingredient.expiration_date.strftime("%Y/%m/%d") %></td>
          <td><%= ActiveSupport::NumberHelper.number_to_rounded(ingredient.quantity, strip_insignificant_zeros: true) %><%= ingredient.unit %></td>
