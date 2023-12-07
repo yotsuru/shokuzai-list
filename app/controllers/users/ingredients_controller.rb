@@ -4,7 +4,7 @@ class Users::IngredientsController < ApplicationController
   def index
     # @ingredients = current_user.ingredients
     
-    if params[:name_kana]#50音順
+    if params[:name_sort]#50音順                      #漢字、カタカナをひらがなに変換して並べる
      @ingredients = current_user.ingredients.sort_by {|i| [i.name.to_kanhira.to_hira, i]}
     elsif params[:latest]#登録が新しい順
      @ingredients = current_user.ingredients.latest

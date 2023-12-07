@@ -1,7 +1,7 @@
 <h2>食材一覧</h2>
 
 <% if @ingredients.present? %>
-  <%= link_to '50音順', ingredients_path(name_kana: "true") %>
+  <%= link_to '50音順', ingredients_path(name_sort: "true") %>
   |<%= link_to '新しい順', ingredients_path(latest: "true") %>
   |<%= link_to '古い順', ingredients_path(old: "true") %>
   |<%= link_to '購入日が新しい順', ingredients_path(purchase_date_latest: "true") %>

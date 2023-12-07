@@ -8,7 +8,7 @@ class Ingredient < ApplicationRecord
   validates :quantity, numericality: { only_float: true }
   
   # 並び替え機能
-  scope :name_kana, -> {order(name: :asc)}
+  scope :name_sort, -> {order(name: :asc)}
   # 登録の新しい順、古い順
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}

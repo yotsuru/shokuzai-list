@@ -27,8 +27,8 @@ class Users::GenresController < ApplicationController
     
     #各ジャンルに属した食材
     # @ingredients = @genre.ingredients
-     if params[:name_kana]#50音順
-      @ingredients = @ingredients.name_kana
+     if params[:name_sort]#50音順         #漢字、カタカナをひらがなに変換して並べる
+      @ingredients = @ingredients.sort_by {|i| [i.name.to_kanhira.to_hira, i]}
      elsif params[:latest]#登録が新しい順
       @ingredients = @ingredients.latest
      elsif params[:old]#登録が古い順
