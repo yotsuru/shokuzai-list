@@ -18,25 +18,31 @@ class Users::GenresController < ApplicationController
   end
   
   def show
-    @genre = Genre.find(params[:id])
+    if params[:id].to_i == 0
+        @ingredients = Ingredient.where(user_id: current_user.id, genre: nil)
+    else
+        @genre = Genre.find(params[:id])
+        @ingredients = @genre.ingredients
+    end
+    
     #各ジャンルに属した食材
-    @ingredients = @genre.ingredients
+    # @ingredients = @genre.ingredients
      if params[:name_kana]#50音順
-      @ingredients = @genre.ingredients.name_kana
+      @ingredients = @ingredients.name_kana
      elsif params[:latest]#登録が新しい順
-      @ingredients = @genre.ingredients.latest
+      @ingredients = @ingredients.latest
      elsif params[:old]#登録が古い順
-      @ingredients = @genre.ingredients.old
+      @ingredients = @ingredients.old
      elsif params[:purchase_date_latest]#購入日が新しい順
-      @ingredients = @genre.ingredients.purchase_date_latest
+      @ingredients = @ingredients.purchase_date_latest
      elsif params[:purchase_date_old]#購入日が古い順
-      @ingredients = @genre.ingredients.purchase_date_old
+      @ingredients = @ingredients.purchase_date_old
      elsif params[:expiration_date_latest]#賞味期限が遠い順
-      @ingredients = @genre.ingredients.expiration_date_latest
+      @ingredients = @ingredients.expiration_date_latest
      elsif params[:expiration_date_old]#賞味期限が近い順
-      @ingredients = @genre.ingredients.expiration_date_old
+      @ingredients = @ingredients.expiration_date_old
      else
-      @ingredients = @genre.ingredients
+      @ingredients = @ingredients
      end
     #食材のメモ機能
     @comment = Comment.new

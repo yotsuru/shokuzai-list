@@ -1,10 +1,10 @@
 class Ingredient < ApplicationRecord
-  belongs_to :genre
+  belongs_to :genre, optional: true
 	belongs_to :user
 	
 	has_many :comments, dependent: :destroy
     
-  validates :genre_id, :user_id, :name, :quantity, presence: true
+  validates :user_id, :name, :quantity, presence: true
   validates :quantity, numericality: { only_float: true }
   
   # 並び替え機能
@@ -13,11 +13,11 @@ class Ingredient < ApplicationRecord
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
   # 購入日の新しい順、古い順
-  scope :purchase_date_latest, -> {order(purchase_date: :desc)}
-  scope :purchase_date_old, -> {order(purchase_date: :asc)}
+  scope :purchase_date_latest, -> {order(Arel.sql("purchase_date DESC NULLS LAST"))}
+  scope :purchase_date_old, -> {order(Arel.sql("purchase_date ASC NULLS LAST"))}
   # 賞味期限の遠い順、近い順
-  scope :expiration_date_latest, -> {order(expiration_date: :desc)}
-  scope :expiration_date_old, -> {order(expiration_date: :asc)}
+  scope :expiration_date_latest, -> {order(Arel.sql("expiration_date DESC NULLS LAST"))}
+  scope :expiration_date_old, -> {order(Arel.sql("expiration_date ASC NULLS LAST"))}
   
   
   # 検索方法分岐

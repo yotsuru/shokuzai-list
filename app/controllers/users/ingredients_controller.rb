@@ -2,24 +2,24 @@ class Users::IngredientsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @ingredients = current_user.ingredients
+    # @ingredients = current_user.ingredients
     
     if params[:name_kana]#50音順
-     @ingredients = Ingredient.name_kana
+     @ingredients = current_user.ingredients.sort_by {|i| [i.name.to_kanhira.to_hira, i]}
     elsif params[:latest]#登録が新しい順
-     @ingredients = Ingredient.latest
+     @ingredients = current_user.ingredients.latest
     elsif params[:old]#登録が古い順
-     @ingredients = Ingredient.old
+     @ingredients = current_user.ingredients.old
     elsif params[:purchase_date_latest]#購入日が新しい順
-     @ingredients = Ingredient.purchase_date_latest
+     @ingredients = current_user.ingredients.purchase_date_latest
     elsif params[:purchase_date_old]#購入日が古い順
-     @ingredients = Ingredient.purchase_date_old
+     @ingredients = current_user.ingredients.purchase_date_old
     elsif params[:expiration_date_latest]#賞味期限が遠い順
-     @ingredients = Ingredient.expiration_date_latest
+     @ingredients = current_user.ingredients.expiration_date_latest
     elsif params[:expiration_date_old]#賞味期限が近い順
-     @ingredients = Ingredient.expiration_date_old
+     @ingredients = current_user.ingredients.expiration_date_old
     else
-     @ingredients = Ingredient.all
+     @ingredients = current_user.ingredients
     end
     
     @comment = Comment.new
@@ -31,10 +31,10 @@ class Users::IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
+    @ingredient.genre_id = ingredient_params[:genre_id].blank? ? nil : ingredient_params[:genre_id]
     @ingredient.user_id = current_user.id
-    genre = @ingredient.genre
-    if @ingredient.save
-      redirect_to genre_path(genre.id)
+    if @ingredient.save!
+      redirect_to @ingredient.genre_id.nil? ? genre_path(0) : genre_path(@ingredient.genre)
     else
       render :new
     end

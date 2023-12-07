@@ -25,7 +25,7 @@
         <% @ingredients.each do |ingredient| %>
             <tr>
               <td><%= ingredient.name %></td>
-              <td><%= ingredient.genre %></td>
+              <td><%= ingredient.genre.nil? ? "なし" : ingredient.genre.name %></td>
               <!-- 日付設定がされていない場合blank、されている場合は表示する-->
               <td><%= ingredient.purchase_date.blank? ? "" : ingredient.purchase_date.strftime("%Y/%m/%d") %></td>
               <td><%= ingredient.expiration_date.blank? ? "" : ingredient.expiration_date.strftime("%Y/%m/%d") %></td>

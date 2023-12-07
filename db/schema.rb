@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_30_080923) do
+ActiveRecord::Schema.define(version: 2023_12_07_124751) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "ingredient_id", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2023_11_30_080923) do
   end
 
   create_table "ingredients", force: :cascade do |t|
-    t.integer "genre_id", null: false
+    t.integer "genre_id"
     t.integer "user_id", null: false
     t.string "name", null: false
     t.date "expiration_date"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2023_11_30_080923) do
     t.string "unit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["genre_id"], name: "index_ingredients_on_genre_id"
     t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 

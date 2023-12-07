@@ -5,9 +5,14 @@
   <!--検索対象モデルがGenreの時 -->
 <% if @range == "Genre" %>
     <tbody>
+      <% if params[:name].blank? %>
+        <tr>
+          <td><%= link_to "なし", genre_path(0) %></td>
+        </tr>
+      <% end %>
       <% @genres.each do |genre| %>
         <tr>
-          <td><%= genre.name %></td>
+          <td><%= link_to genre.name, genre_path(genre) %></td>
         </tr>
       <% end %>
     </tbody>
@@ -28,7 +33,7 @@
       <% @ingredients.each do |ingredient| %>
         <tr>
          <td><%= ingredient.name %></td>
-         <td><%= ingredient.genre %></td>
+         <td><%= ingredient.genre.nil? ? "なし" : ingredient.genre.name %></td>
          <td><%= ingredient.purchase_date.blank? ? "" : ingredient.purchase_date.strftime("%Y/%m/%d") %></td>
          <td><%= ingredient.expiration_date.blank? ? "" : ingredient.expiration_date.strftime("%Y/%m/%d") %></td>
          <td><%= ActiveSupport::NumberHelper.number_to_rounded(ingredient.quantity, strip_insignificant_zeros: true) %><%= ingredient.unit %></td>
