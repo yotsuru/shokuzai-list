@@ -21,8 +21,9 @@ class Users::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     #各ジャンルに属した食材
     @ingredients = @genre.ingredients
-     
-     if params[:latest]#登録が新しい順
+     if params[:name_kana]#50音順
+      @ingredients = @genre.ingredients.name_kana
+     elsif params[:latest]#登録が新しい順
       @ingredients = @genre.ingredients.latest
      elsif params[:old]#登録が古い順
       @ingredients = @genre.ingredients.old

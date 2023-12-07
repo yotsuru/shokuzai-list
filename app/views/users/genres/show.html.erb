@@ -6,7 +6,8 @@
 "data-confirm" => "ジャンルを削除するとジャンル内の全ての食材のデータも削除されます。本当によろしいですか？" %><br>
     
 <% if @ingredients.present? %>
-    <%= link_to '新しい順', genre_path(@genre.id,latest: "true") %>
+    <%= link_to '50音順', genre_path(@genre.id,name_kana: "true") %>
+    |<%= link_to '新しい順', genre_path(@genre.id,latest: "true") %>
     |<%= link_to '古い順', genre_path(@genre.id,old: "true") %>
     |<%= link_to '購入日が新しい順', genre_path(@genre.id,purchase_date_latest: "true") %>
     |<%= link_to '購入日が古い順', genre_path(@genre.id,purchase_date_old: "true") %>

@@ -4,7 +4,9 @@ class Users::IngredientsController < ApplicationController
   def index
     @ingredients = current_user.ingredients
     
-    if params[:latest]#登録が新しい順
+    if params[:name_kana]#50音順
+     @ingredients = Ingredient.name_kana
+    elsif params[:latest]#登録が新しい順
      @ingredients = Ingredient.latest
     elsif params[:old]#登録が古い順
      @ingredients = Ingredient.old
