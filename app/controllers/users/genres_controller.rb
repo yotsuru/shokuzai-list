@@ -1,4 +1,5 @@
 class Users::GenresController < ApplicationController
+  before_action :authenticate_user!
   
   def index
     @genres = current_user.genres
