@@ -1,6 +1,12 @@
 <h2>食材一覧</h2>
 
 <% if @ingredients.present? %>
+<%= link_to '新しい順', ingredients_path(latest: "true") %>
+|<%= link_to '古い順', ingredients_path(old: "true") %>
+|<%= link_to '購入日が新しい順', ingredients_path(purchase_date_latest: "true") %>
+|<%= link_to '購入日が古い順', ingredients_path(purchase_date_old: "true") %>
+|<%= link_to '賞味期限が近い順', ingredients_path(expiration_date_latest: "true") %>
+|<%= link_to '賞味期限が遠い順', ingredients_path(expiration_date_old: "true") %>
 <table class="table table-hover table-bordered table-condensed">
       <thead>
 		    <tr>
