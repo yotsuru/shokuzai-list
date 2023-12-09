@@ -1,0 +1,37 @@
+<%# if @ingredients.present? %>
+<% if params[:method] == "expiration" %>
+    <h5><%= @start_date.strftime("%Y年%m月%d日") %>～<%= @end_date.strftime("%Y年%m月%d日") %>に賞味期限を迎えるもの</h5>
+<% else %>
+    <h5><%= @end_date.strftime("%Y年%m月%d日") %>～<%= @start_date.strftime("%Y年%m月%d日") %>に購入したもの</h5>
+<% end %>
+   <table class="table table-hover table-inverse">
+     <thead>
+		    <tr>
+		      <th>食材</th>
+		      <th>ジャンル</th>
+	      	  <th>購入日</th>
+		      <th>賞味期限</th>
+		      <th>数量</th>
+		      <th>メモ</th>
+		    </tr>
+	  </thead>
+      <tbody>
+      <% @ingredients.each do |ingredient| %>
+        <tr>
+         <td><%= ingredient.name %></td>
+         <td><%= ingredient.genre.nil? ? "なし" : ingredient.genre.name %></td>
+         <td><%= ingredient.purchase_date.blank? ? "" : ingredient.purchase_date.strftime("%Y/%m/%d") %></td>
+         <td><%= ingredient.expiration_date.blank? ? "" : ingredient.expiration_date.strftime("%Y/%m/%d") %></td>
+         <td><%= ActiveSupport::NumberHelper.number_to_rounded(ingredient.quantity, strip_insignificant_zeros: true) %><%= ingredient.unit %></td>
+         <% comment = ingredient.comments.first || @comment %>
+         <td>
+                <%= form_with model: [ingredient, comment] do |f| %>
+                  <%= f.text_area :comment, rows: '2', placeholder: "メモ" %>
+                  <%= f.submit "メモを更新する" %>
+                <% end %>
+         </td>
+        </tr>
+       <% end %>
+       </tbody>
+   </table>
+<%# end %>

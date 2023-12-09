@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   
   #検索機能
   get "search" => "searches#search"
+  get "search_by_date" => "searches#search_by_date"
 end

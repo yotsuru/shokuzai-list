@@ -34,4 +34,6 @@ class Ingredient < ApplicationRecord
       @ingredient = Ingredient.all
     end
   end
+  
+  
 end
