@@ -41,8 +41,8 @@
          <td><%= ingredient.purchase_date.blank? ? "" : ingredient.purchase_date.strftime("%Y/%m/%d") %></td>
          <td><%= ingredient.expiration_date.blank? ? "" : ingredient.expiration_date.strftime("%Y/%m/%d") %></td>
          <td><%= ActiveSupport::NumberHelper.number_to_rounded(ingredient.quantity, strip_insignificant_zeros: true) %><%= ingredient.unit %></td>
-         <% comment = ingredient.comments.first || @comment %>
          <td>
+             <% comment = ingredient.comments.first || @comment %>
                 <%= form_with model: [ingredient, comment] do |f| %>
                   <%= f.text_area :comment, rows: '2', placeholder: "メモ" %>
                   <%= f.submit "メモを更新する" %>

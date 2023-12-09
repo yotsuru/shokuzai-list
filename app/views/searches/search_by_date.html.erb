@@ -1,8 +1,9 @@
 <h2>検索結果</h2>
 <% if @ingredients.present? %>
-　<% if params[:method] == "expiration" %>
+  
+　<% if params[:method] == "expiration" %><!-- 賞味期限検索の場合 -->
     <h5><%= @start_date.strftime("%Y年%m月%d日") %>～<%= @end_date.strftime("%Y年%m月%d日") %>に賞味期限を迎えるもの</h5>
-　<% else %>
+  <% else %><!-- 購入日検索の場合 -->
     <h5><%= @end_date.strftime("%Y年%m月%d日") %>～<%= @start_date.strftime("%Y年%m月%d日") %>に購入したもの</h5>
 　<% end %>
    <table class="table table-hover table-inverse">
@@ -24,8 +25,8 @@
          <td><%= ingredient.purchase_date.blank? ? "" : ingredient.purchase_date.strftime("%Y/%m/%d") %></td>
          <td><%= ingredient.expiration_date.blank? ? "" : ingredient.expiration_date.strftime("%Y/%m/%d") %></td>
          <td><%= ActiveSupport::NumberHelper.number_to_rounded(ingredient.quantity, strip_insignificant_zeros: true) %><%= ingredient.unit %></td>
-         <% comment = ingredient.comments.first || @comment %>
          <td>
+              <% comment = ingredient.comments.first || @comment %>
                 <%= form_with model: [ingredient, comment] do |f| %>
                   <%= f.text_area :comment, rows: '2', placeholder: "メモ" %>
                   <%= f.submit "メモを更新する" %>

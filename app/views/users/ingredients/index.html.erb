@@ -1,6 +1,6 @@
 <% if @ingredients.present? %>
 <h2>食材一覧</h2>
-  <%= link_to '50音順', ingredients_path(name_sort: "true") %>
+   <%= link_to '50音順', ingredients_path(name_sort: "true") %>
   |<%= link_to '新しい順', ingredients_path(latest: "true") %>
   |<%= link_to '古い順', ingredients_path(old: "true") %>
   |<%= link_to '購入日が新しい順', ingredients_path(purchase_date_latest: "true") %>
@@ -29,12 +29,12 @@
               <td><%= ingredient.purchase_date.blank? ? "" : ingredient.purchase_date.strftime("%Y/%m/%d") %></td>
               <td><%= ingredient.expiration_date.blank? ? "" : ingredient.expiration_date.strftime("%Y/%m/%d") %></td>
               <td><%= ActiveSupport::NumberHelper.number_to_rounded(ingredient.quantity, strip_insignificant_zeros: true) %><%= ingredient.unit %></td>
-              <% comment = ingredient.comments.first || @comment %>
               <td>
-                <%= form_with model: [ingredient, comment] do |f| %>
+                <% comment = ingredient.comments.first || @comment %>
+                 <%= form_with model: [ingredient, comment] do |f| %>
                   <%= f.text_area :comment, rows: '2', placeholder: "メモ" %>
                   <%= f.submit "メモを更新する" %>
-                <% end %>
+                 <% end %>
               </td>
               <td><%= link_to "編集する", edit_ingredient_path(ingredient.id) %></td>
               <td><%= link_to "削除する", ingredient_path(ingredient.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
