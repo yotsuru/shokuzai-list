@@ -4,7 +4,8 @@
 <table class="table table-hover table-inverse">
   <!--検索対象モデルがGenreの時 -->
 <% if @range == "Genre" %>
-    <tbody>
+  <% if @genres.present? %>
+     <tbody>
       <% if params[:name].blank? %>
         <tr>
           <td><%= link_to "なし", genre_path(0) %></td>
@@ -15,7 +16,11 @@
           <td><%= link_to genre.name, genre_path(genre) %></td>
         </tr>
       <% end %>
-    </tbody>
+     </tbody>
+  <% else %>
+     <div class="text-center">該当するジャンルは登録されていません。</div>
+     登録する場合は<%= link_to "こちら", genres_path %>から登録してください。
+  <% end %>  
 <% else %>
     <!--検索対象モデルがGenreではない時(= 検索対象モデルがIngredientの時) -->
   <% if @ingredients.present? %>
@@ -50,6 +55,6 @@
     </table>
   <% else %>
     <div class="text-center">該当する食材は登録されていません。</div>
-    登録する場合は<%= link_to "こちら", new_ingredient_path %>
+    登録する場合は<%= link_to "こちら", new_ingredient_path %>から登録してください。
   <% end %>
 <% end %>
