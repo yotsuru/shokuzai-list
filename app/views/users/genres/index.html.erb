@@ -1,5 +1,4 @@
-<h1>全ジャンル　一覧</h1>
-<%= form_with model: @genre, url: genres_path, method: :post do |f| %>
+ <%= form_with model: @genre, url: genres_path, method: :post do |f| %>
     <div class="form-group">
         <%= f.label :ジャンル登録 %>
         <%= f.text_field :name %>
@@ -7,11 +6,18 @@
     <div class="form-group">
         <%= f.submit "登録する" %>
     </div>
-<% end %>
-
-<ul>
+ <% end %>
+<% if @genres.present? %>
+ <h1>全ジャンル　一覧</h1>
+     <%= link_to '50音順', genres_path(name_sort: "true") %>
+    |<%= link_to '新しい順', genres_path(latest: "true") %>
+    |<%= link_to '古い順', genres_path(old: "true") %>
+ <ul>
     <li><%= link_to "なし", genre_path(0) %></li>
     <% @genres.each do |genre| %>
         <li><%= link_to genre.name, genre_path(genre.id) %></li>
     <% end %>
-</ul>
+ </ul>
+<% else %>
+    <div class="text-center">現在ジャンルは登録されていません。</div>
+<% end %>

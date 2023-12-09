@@ -1,16 +1,5 @@
 Rails.application.routes.draw do
  
-  # namespace :users do
-  #   get 'ingredients/new'
-  #   get 'ingredients/show'
-  #   get 'ingredients/edit'
-  # end
-  # namespace :users do
-  #   get 'genres/new'
-  #   get 'genres/index'
-  #   get 'genres/show'
-  #   get 'genres/edit'
-  # end
   
   scope module: :users do
     resources :ingredients do

@@ -1,6 +1,5 @@
-<h2>食材一覧</h2>
-
 <% if @ingredients.present? %>
+<h2>食材一覧</h2>
   <%= link_to '50音順', ingredients_path(name_sort: "true") %>
   |<%= link_to '新しい順', ingredients_path(latest: "true") %>
   |<%= link_to '古い順', ingredients_path(old: "true") %>
