@@ -1,12 +1,22 @@
 <% if @ingredients.present? %>
 <h2>食材一覧</h2>
    <%= link_to '50音順', ingredients_path(name_sort: "true") %>
-  |<%= link_to '新しい順', ingredients_path(latest: "true") %>
-  |<%= link_to '古い順', ingredients_path(old: "true") %>
-  |<%= link_to '購入日が新しい順', ingredients_path(purchase_date_latest: "true") %>
-  |<%= link_to '購入日が古い順', ingredients_path(purchase_date_old: "true") %>
-  |<%= link_to '賞味期限が遠い順', ingredients_path(expiration_date_latest: "true") %>
-  |<%= link_to '賞味期限が近い順', ingredients_path(expiration_date_old: "true") %>
+  
+  <%= form_with url: ingredients_path, method: :get do |f| %>
+    登録順
+    <%= f.select :date_sort, [["新しい順", "latest"], ["古い順", "old"]] %>
+    <%= f.submit "並び替え", class: "btn btn-primary" %>
+    <% end %>
+  <%= form_with url: ingredients_path, method: :get do |f| %>
+    購入日
+    <%= f.select :purchase_date_sort, [["新しい順", "purchase_date_latest"], ["古い順", "purchase_date_old"]] %>
+    <%= f.submit "並び替え", class: "btn btn-primary" %>
+    <% end %>
+  <%= form_with url: ingredients_path, method: :get do |f| %>
+    賞味期限
+    <%= f.select :expiration_date_sort, [["近い順", "expiration_date_old"], ["遠い順", "expiration_date_latest"]] %>
+    <%= f.submit "並び替え", class: "btn btn-primary" %>
+    <% end %>
   <table class="table table-hover table-bordered table-condensed">
       <thead>
 		    <tr>
@@ -45,3 +55,4 @@
     <div class="text-center">現在食材は登録されていません。
     登録する場合は<%= link_to "こちら", new_ingredient_path %>から登録してください。</div>
 <% end %>
+ 

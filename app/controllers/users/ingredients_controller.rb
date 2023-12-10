@@ -4,17 +4,17 @@ class Users::IngredientsController < ApplicationController
   def index
     if params[:name_sort]#50音順                      #漢字、カタカナをひらがなに変換して並べる
      @ingredients = current_user.ingredients.sort_by {|i| [i.name.to_kanhira.to_hira, i]}
-    elsif params[:latest]#登録が新しい順
+    elsif params[:date_sort] == "latest"#登録が新しい順
      @ingredients = current_user.ingredients.latest
-    elsif params[:old]#登録が古い順
+    elsif params[:date_sort] == "old"#登録が古い順
      @ingredients = current_user.ingredients.old
-    elsif params[:purchase_date_latest]#購入日が新しい順
+    elsif params[:purchase_date_sort] == "purchase_date_latest"#購入日が新しい順
      @ingredients = current_user.ingredients.purchase_date_latest
-    elsif params[:purchase_date_old]#購入日が古い順
+    elsif params[:purchase_date_sort] == "purchase_date_old"#購入日が古い順
      @ingredients = current_user.ingredients.purchase_date_old
-    elsif params[:expiration_date_latest]#賞味期限が遠い順
+    elsif params[:expiration_date_sort] == "expiration_date_latest"#賞味期限が遠い順
      @ingredients = current_user.ingredients.expiration_date_latest
-    elsif params[:expiration_date_old]#賞味期限が近い順
+    elsif params[:expiration_date_sort] == "expiration_date_old"#賞味期限が近い順
      @ingredients = current_user.ingredients.expiration_date_old
     else
      @ingredients = current_user.ingredients
