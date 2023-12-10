@@ -8,6 +8,9 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import "../stylesheets/application"; 
+import "../stylesheets/simple_calendar"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

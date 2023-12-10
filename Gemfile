@@ -56,4 +56,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+#50音順並び替え
 gem 'miyabi'
+#カレンダー
+gem 'simple_calendar'

@@ -1,2 +1,12 @@
 <h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+
+<%= month_calendar(events: @ingredients, attribute: :expiration_date, end_attribute: :expiration_date) do |date, ingredients| %>
+　<%= date.day %>
+　<% ingredients.each do |ingredient| %>
+    <div>
+      <%= link_to ingredient.name, genre_path(ingredient.genre.nil? ? 0 : ingredient.genre.id) %>
+    </div>
+  <% end %>
+<% end %>
+ 
+

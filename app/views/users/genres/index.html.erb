@@ -12,14 +12,15 @@
      <%= link_to '50音順', genres_path(name_sort: "true") %>
     |<%= link_to '新しい順', genres_path(latest: "true") %>
     |<%= link_to '古い順', genres_path(old: "true") %>
-    <%= form_with url: @genres_path do |f| %>
-    <%= f.select :created_at, options_for_select([['新しい順', 'genres_path(latest: "true")'], ['古い順', 'genres_path(old: "true")']]) %>
-    { '新しい順' => genres_path(latest: "true") , '古い順' => genres_path(old: "true") } %>
+    <%= form_with url: genres_path, method: :get do |f| %>
+    <%= f.select :date_sort, [["新しい順", "latest"], ["古い順", "old"]] %>
+    <!--{ '新しい順' => genres_path(latest: "true") , '古い順' => genres_path(old: "true") } %>-->
+     <%= f.submit "並び替え", class: "btn btn-primary" %>
     <% end %>
-    <select>
-  <option created_at="latest">新しい順</option>
-  <option created_at="old">古い順</option>
-</select>
+<!--    <select>-->
+<!--  <option created_at="latest">新しい順</option>-->
+<!--  <option created_at="old">古い順</option>-->
+<!--</select>-->
 
     
  <ul>

@@ -4,9 +4,9 @@ class Users::GenresController < ApplicationController
   def index
     if params[:name_sort]#50音順            #漢字、カタカナをひらがなに変換して並べる
      @genres = current_user.genres.sort_by {|i| [i.name.to_kanhira.to_hira, i]}
-    elsif params[:latest]#登録が新しい順
+    elsif params[:date_sort] == "latest" #登録が新しい順
      @genres = current_user.genres.latest
-    elsif params[:old]#登録が古い順
+    elsif params[:date_sort] == "old" #登録が古い順
      @genres = current_user.genres.old
     else
      @genres = current_user.genres
