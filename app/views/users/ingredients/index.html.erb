@@ -1,7 +1,11 @@
 <% if @ingredients.present? %>
 <h2>食材一覧</h2>
-   <%= link_to '50音順', ingredients_path(name_sort: "true") %>
-  
+   
+  <%= form_with url: ingredients_path, method: :get do |f| %>
+    食材名
+    <%= f.select :name_sort, ["50音順"] %>
+    <%= f.submit "並び替え", class: "btn btn-primary" %>
+    <% end %>
   <%= form_with url: ingredients_path, method: :get do |f| %>
     登録順
     <%= f.select :date_sort, [["新しい順", "latest"], ["古い順", "old"]] %>

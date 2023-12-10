@@ -10,12 +10,16 @@
 <% if @genres.present? %>
  <h1>全ジャンル　一覧</h1>
     <%= link_to '50音順', genres_path(name_sort: "true") %>
-    
+    <%= form_with url: genres_path, method: :get do |f| %>
+    ジャンル名
+      <%= f.select :name_sort, ["50音順"] %>
+      <%= f.submit "並び替え", class: "btn btn-primary" %>
+      <% end %>
     <%= form_with url: genres_path, method: :get do |f| %>
     登録順
-    <%= f.select :date_sort, [["新しい順", "latest"], ["古い順", "old"]] %>
-    <%= f.submit "並び替え", class: "btn btn-primary" %>
-    <% end %>
+      <%= f.select :date_sort, [["新しい順", "latest"], ["古い順", "old"]] %>
+      <%= f.submit "並び替え", class: "btn btn-primary" %>
+      <% end %>
 
  <ul>
     <li><%= link_to "なし", genre_path(0) %></li>
