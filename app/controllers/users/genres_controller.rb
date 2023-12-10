@@ -27,28 +27,26 @@ class Users::GenresController < ApplicationController
   end
   
   def show
-    if params[:id].to_i == 0
+    if params[:id].to_i == 0  #idが0ならnil=ジャンル"なし"
         @ingredients = Ingredient.where(user_id: current_user.id, genre: nil)
     else
         @genre = Genre.find(params[:id])
-        @ingredients = @genre.ingredients
+        @ingredients = @genre.ingredients #ジャンルに属した食材
     end
     
-    #各ジャンルに属した食材
-    # @ingredients = @genre.ingredients
      if params[:name_sort]#50音順         #漢字、カタカナをひらがなに変換して並べる
       @ingredients = @ingredients.sort_by {|i| [i.name.to_kanhira.to_hira, i]}
-     elsif params[:latest]#登録が新しい順
+     elsif params[:date_sort] == "latest"#登録が新しい順
       @ingredients = @ingredients.latest
-     elsif params[:old]#登録が古い順
+     elsif params[:date_sort] == "old"#登録が古い順
       @ingredients = @ingredients.old
-     elsif params[:purchase_date_latest]#購入日が新しい順
+     elsif params[:purchase_date_sort] == "purchase_date_latest"#購入日が新しい順
       @ingredients = @ingredients.purchase_date_latest
-     elsif params[:purchase_date_old]#購入日が古い順
+     elsif params[:purchase_date_sort] == "purchase_date_old"#購入日が古い順
       @ingredients = @ingredients.purchase_date_old
-     elsif params[:expiration_date_latest]#賞味期限が遠い順
+     elsif params[:expiration_date_sort] == "expiration_date_latest"#賞味期限が遠い順
       @ingredients = @ingredients.expiration_date_latest
-     elsif params[:expiration_date_old]#賞味期限が近い順
+     elsif params[:expiration_date_sort] == "expiration_date_old"#賞味期限が近い順
       @ingredients = @ingredients.expiration_date_old
      else
       @ingredients = @ingredients
