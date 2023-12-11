@@ -9,7 +9,7 @@
  <% end %>
 <% if @genres.present? %>
  <h1>全ジャンル　一覧</h1>
-    <%= link_to '50音順', genres_path(name_sort: "true") %>
+    <%#= link_to '50音順', genres_path(name_sort: "true") %>
     <%= form_with url: genres_path, method: :get do |f| %>
     ジャンル名
       <%= f.select :name_sort, ["50音順"] %>

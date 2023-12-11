@@ -6,6 +6,13 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :update]
     end
     resources :genres, except: [:new]
+    resources :users, only: [:show, :edit, :update] do
+      collection do
+         get 'users/mypage' => 'users#show'
+         get 'users/mypage/edit' => 'users#edit'
+         patch '/users' => 'users#update', as: 'update_user'
+        end
+      end
   end
   
   devise_for :users, controllers: {

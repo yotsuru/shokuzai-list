@@ -7,12 +7,12 @@
     
 <% if @ingredients.present? %>
     <%#= link_to '50音順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,name_sort: "true") %>
-    |<%#= link_to '新しい順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,latest: "true") %>
-    |<%#= link_to '古い順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,old: "true") %>
-    |<%#= link_to '購入日が新しい順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,purchase_date_latest: "true") %>
-    |<%#= link_to '購入日が古い順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,purchase_date_old: "true") %>
-    |<%#= link_to '賞味期限が遠い順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,expiration_date_latest: "true") %>
-    |<%#= link_to '賞味期限が近い順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,expiration_date_old: "true") %>
+    <%#= link_to '新しい順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,latest: "true") %>
+    <%#= link_to '古い順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,old: "true") %>
+    <%#= link_to '購入日が新しい順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,purchase_date_latest: "true") %>
+    <%#= link_to '購入日が古い順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,purchase_date_old: "true") %>
+    <%#= link_to '賞味期限が遠い順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,expiration_date_latest: "true") %>
+    <%#= link_to '賞味期限が近い順', genre_path(params[:id].to_i == 0 ? 0 : @genre.id,expiration_date_old: "true") %>
     <%= form_with url: genre_path(params[:id].to_i == 0 ? 0 : @genre.id), method: :get do |f| %>
     食材名
       <%= f.select :name_sort, ["50音順"] %>

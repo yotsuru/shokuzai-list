@@ -1,17 +1,19 @@
-<header>
+
+ <header>
 <% if user_signed_in? %>
-      <ul>
-        <li><%= link_to "食財リスト", root_path %></li>
-        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-        <li><%= link_to "食材登録", new_ingredient_path %></li>
-        <li><%= link_to "食材一覧", ingredients_path %></li>
-        <li><%= link_to "ジャンル", genres_path %></li>
-      </ul>
+      
+        <h1><%= link_to "食財リスト", root_path %></h1>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to "マイページ", users_mypage_users_path %>
+        <%= link_to "食材登録", new_ingredient_path %>
+        <%= link_to "食材一覧", ingredients_path %>
+        <%= link_to "ジャンル", genres_path %>
+      
 <% else %>
-      <ul>
-        <li><%= link_to "食財リスト", root_path %></li>
-        <li><%= link_to "初めての方はこちらへ", new_user_registration_path %></li>
-        <li><%= link_to "ログイン", new_user_session_path %></li>
-      </ul>
+     
+        <h1><%= link_to "食財リスト", root_path %></h1>
+        <%= link_to "初めての方はこちらへ", new_user_registration_path %>
+        <%= link_to "ログイン", new_user_session_path %>
+      
 <% end %>
-</header>
+ </header>
