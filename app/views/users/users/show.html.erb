@@ -1,2 +1,20 @@
 <h1>マイページ</h1>
- <%= link_to "ユーザー情報編集", users_mypage_edit_users_path %>
+
+<table class="table table-bordered table-condensed">
+        <tr>
+          <th>氏名</th>
+          <td><%= @user.last_name + @user.first_name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td><%= @user.last_name_kana + @user.first_name_kana %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+     
+     <%= link_to "ユーザー情報を編集する", users_mypage_edit_users_path %>
+  
+  
