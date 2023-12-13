@@ -2,7 +2,7 @@
 <h1>ユーザー情報編集</h1>
       
   
- <%= form_with model: @user, url:update_user_users_path ,method: :patch do |f| %>
+ <%= form_with model: @user, url: update_user_path ,method: :patch do |f| %>
 
      <div class="row field">
         <%= f.label :"氏名" %>

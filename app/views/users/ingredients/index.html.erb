@@ -1,26 +1,38 @@
 <% if @ingredients.present? %>
 <h2>食材一覧</h2>
    
+<div class="d-flex">
   <%= form_with url: ingredients_path, method: :get do |f| %>
-    食材名
-    <%= f.select :name_sort, ["50音順"] %>
-    <%= f.submit "並び替え", class: "btn btn-primary" %>
+    <!--食材名-->
+    <%= f.select :sort, 
+          [
+            ["50音順", "name_sort"],
+            ["登録日が新しい順", "date_sort_latest"],
+            ["登録日が古い順", "date_sort_old"],
+            ["購入日が新しい順", "purchase_date_latest"],
+            ["購入日が古い順", "purchase_date_old"],
+            ["賞味期限が近い順", "expiration_date_latest"],
+            ["賞味期限が遠い順", "expiration_date_old"],
+          ], {selected: params[:sort]}
+    %>
+    <%= f.submit "並び替え", class: "btn btn-primary btn-sm mr-3" %>
     <% end %>
-  <%= form_with url: ingredients_path, method: :get do |f| %>
-    登録順
-    <%= f.select :date_sort, [["新しい順", "latest"], ["古い順", "old"]] %>
-    <%= f.submit "並び替え", class: "btn btn-primary" %>
-    <% end %>
-  <%= form_with url: ingredients_path, method: :get do |f| %>
-    購入日
-    <%= f.select :purchase_date_sort, [["新しい順", "purchase_date_latest"], ["古い順", "purchase_date_old"]] %>
-    <%= f.submit "並び替え", class: "btn btn-primary" %>
-    <% end %>
-  <%= form_with url: ingredients_path, method: :get do |f| %>
-    賞味期限
-    <%= f.select :expiration_date_sort, [["近い順", "expiration_date_old"], ["遠い順", "expiration_date_latest"]] %>
-    <%= f.submit "並び替え", class: "btn btn-primary" %>
-    <% end %>
+  <!--<%= form_with url: ingredients_path, method: :get do |f| %>-->
+  <!--  登録順-->
+  <!--  <%= f.select :date_sort, [["新しい順", "latest"], ["古い順", "old"]] %>-->
+  <!--  <%= f.submit "並び替え", class: "btn btn-primary btn-sm mr-3" %>-->
+  <!--  <% end %>-->
+  <!--<%= form_with url: ingredients_path, method: :get do |f| %>-->
+  <!--  購入日-->
+  <!--  <%= f.select :purchase_date_sort, [["新しい順", "purchase_date_latest"], ["古い順", "purchase_date_old"]] %>-->
+  <!--  <%= f.submit "並び替え", class: "btn btn-primary btn-sm mr-3" %>-->
+  <!--  <% end %>-->
+  <!--<%= form_with url: ingredients_path, method: :get do |f| %>-->
+  <!--  賞味期限-->
+  <!--  <%= f.select :expiration_date_sort, [["近い順", "expiration_date_old"], ["遠い順", "expiration_date_latest"]] %>-->
+  <!--  <%= f.submit "並び替え", class: "btn btn-primary btn-sm" %>-->
+  <!--  <% end %>-->
+</div>
   <table class="table table-hover table-bordered table-condensed">
       <thead>
 		    <tr>

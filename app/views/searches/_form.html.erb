@@ -3,9 +3,9 @@
   <div class="search_form">
     検索
     <%= form_with url: search_path, local: true, method: :get do |f| %>
-      <%= f.text_field :name %>
-      <%= f.select :range, options_for_select([['ジャンル', 'Genre'], ['食材', 'Ingredient']]) %>
-      <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]]) %>
+      <%= f.text_field :name, value: params[:name] %>
+      <%= f.select :range, [['ジャンル', 'Genre'], ['食材', 'Ingredient']], {selected: params[:range]} %>
+      <%= f.select :search, [["完全一致","perfect_match"], ["部分一致","partial_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]], {selected: params[:search]} %>
       <%= f.submit "検索", class: "btn btn-primary" %>
     <% end %>
   </div>
@@ -13,8 +13,8 @@
   <div class="search_form">
     日付け検索
     <%= form_with url: search_by_date_path, local: true, method: :get do |f| %>
-      <%= f.select :method, [["賞味期限", "expiration"], ["購入日", "purchase"]] %>
-      <%= f.select :date, (0..7).map{|day| [day == 0 ? "本日" : "#{day}日前", day]} %>
+      <%= f.select :method, [["賞味期限", "expiration"], ["購入日", "purchase"]], {selected: params[:method]} %>
+      <%= f.select :date, (0..7).map{|day| [day == 0 ? "本日" : "#{day}日前", day]}, {selected: params[:date]} %>
   　　<%= f.submit '検索', class: 'btn btn-primary'  %>
 　　<% end %>
   </div>

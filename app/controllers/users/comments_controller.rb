@@ -1,5 +1,5 @@
 class Users::CommentsController < ApplicationController
-    
+  before_action :authenticate_user!
     
   def create
     ingredient = Ingredient.find(params[:ingredient_id])
