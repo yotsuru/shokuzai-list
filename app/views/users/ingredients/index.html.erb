@@ -47,11 +47,12 @@
                 <% comment = ingredient.comments.first || @comment %>
                  <%= form_with model: [ingredient, comment] do |f| %>
                   <%= f.text_area :comment, rows: '2', placeholder: "メモ" %>
-                  <%= f.submit "メモを更新する" %>
+                  <%= f.submit "メモを更新する", class: "btn btn-light" %>
                  <% end %>
               </td>
-              <td><%= link_to "編集する", edit_ingredient_path(ingredient.id) %></td>
-              <td><%= link_to "削除する", ingredient_path(ingredient.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+              <td><%= link_to "編集する", edit_ingredient_path(ingredient.id), class: "btn btn-success" %></td>
+              <td><%= link_to "削除する", ingredient_path(ingredient.id), method: :delete, 
+                  "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
     　　<% end %>
     　 </tbody>
   </table>

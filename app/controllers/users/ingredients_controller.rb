@@ -46,7 +46,7 @@ class Users::IngredientsController < ApplicationController
     ingredient = Ingredient.find(params[:id])
     ingredient.update(ingredient_params)
     genre = ingredient.genre
-    redirect_to genre_path(genre.id)  
+    redirect_to ingredient.genre_id.nil? ? genre_path(0) : genre_path(ingredient.genre) 
   end
   
   def destroy
