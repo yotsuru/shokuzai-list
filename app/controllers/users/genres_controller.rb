@@ -2,19 +2,21 @@ class Users::GenresController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    if params[:name_sort]#50音順            #漢字、カタカナをひらがなに変換して並べる
-     @genres = current_user.genres.sort_by {|i| [i.name.to_kanhira.to_hira, i]}
-    elsif params[:date_sort] == "latest" #登録が新しい順
-     @genres = current_user.genres.latest
-    elsif params[:date_sort] == "old" #登録が古い順
-     @genres = current_user.genres.old
+    case params[:sort]
+    when "name_sort" then #50音順
+                                              #漢字、カタカナをひらがなに変換して並べる
+       @genres = current_user.genres.sort_by {|i| [i.name.to_kanhira.to_hira, i]}
+    when "date_sort_latest" then #登録が新しい順
+       @genres = current_user.genres.latest
+    when "date_sort_old" then #登録が古い順
+       @genres = current_user.genres.old
     else
-     @genres = current_user.genres
+       @genres = current_user.genres
     end
     
     @genre = Genre.new
   end
-  
+   
   def create
     @genre = Genre.new(genre_params)
     @genre.user_id = current_user.id
@@ -33,27 +35,27 @@ class Users::GenresController < ApplicationController
         @genre = Genre.find(params[:id])
         @ingredients = @genre.ingredients #ジャンルに属した食材
     end
-    
-     if params[:name_sort]#50音順         #漢字、カタカナをひらがなに変換して並べる
+     case params[:sort]
+     when "name_sort" then #50音順
+                                          #漢字、カタカナをひらがなに変換して並べる
       @ingredients = @ingredients.sort_by {|i| [i.name.to_kanhira.to_hira, i]}
-     elsif params[:date_sort] == "latest"#登録が新しい順
+     when "date_sort_latest" then #登録が新しい順
       @ingredients = @ingredients.latest
-     elsif params[:date_sort] == "old"#登録が古い順
+     when "date_sort_old" then #登録が古い順
       @ingredients = @ingredients.old
-     elsif params[:purchase_date_sort] == "purchase_date_latest"#購入日が新しい順
+     when "purchase_date_latest" then #購入日が新しい順
       @ingredients = @ingredients.purchase_date_latest
-     elsif params[:purchase_date_sort] == "purchase_date_old"#購入日が古い順
+     when "purchase_date_old" then #購入日が古い順
       @ingredients = @ingredients.purchase_date_old
-     elsif params[:expiration_date_sort] == "expiration_date_latest"#賞味期限が遠い順
+     when "expiration_date_latest" then #賞味期限が遠い順
       @ingredients = @ingredients.expiration_date_latest
-     elsif params[:expiration_date_sort] == "expiration_date_old"#賞味期限が近い順
+     when "expiration_date_old" then #賞味期限が近い順
       @ingredients = @ingredients.expiration_date_old
      else
       @ingredients = @ingredients
      end
     #食材のメモ機能
     @comment = Comment.new
-    
   end
 
   def edit

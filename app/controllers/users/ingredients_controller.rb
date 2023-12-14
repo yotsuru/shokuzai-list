@@ -3,27 +3,20 @@ class Users::IngredientsController < ApplicationController
   
   def index
     case params[:sort]
-    when "name_sort" then
-      #50音順
-      #漢字、カタカナをひらがなに変換して並べる
+    when "name_sort" then #50音順
+                                                       #漢字、カタカナをひらがなに変換して並べる
       @ingredients = current_user.ingredients.sort_by {|i| [i.name.to_kanhira.to_hira, i]}
-    when "date_sort_latest" then
-      #登録が新しい順
+    when "date_sort_latest" then #登録が新しい順
       @ingredients = current_user.ingredients.latest
-    when "date_sort_old" then
-      #登録が古い順
+    when "date_sort_old" then #登録が古い順
       @ingredients = current_user.ingredients.old
-    when "purchase_date_latest" then
-      #購入日が新しい順
+    when "purchase_date_latest" then #購入日が新しい順
       @ingredients = current_user.ingredients.purchase_date_latest
-    when "purchase_date_old" then
-      #購入日が古い順
+    when "purchase_date_old" then #購入日が古い順
       @ingredients = current_user.ingredients.purchase_date_old
-    when "expiration_date_latest" then
-      #賞味期限が遠い順
+    when "expiration_date_latest" then #賞味期限が遠い順
       @ingredients = current_user.ingredients.expiration_date_latest
-    when "expiration_date_old" then
-      #賞味期限が近い順
+    when "expiration_date_old" then #賞味期限が近い順
       @ingredients = current_user.ingredients.expiration_date_old
     else
       @ingredients = current_user.ingredients
