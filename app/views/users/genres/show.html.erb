@@ -14,8 +14,8 @@
             ["登録日が古い順", "date_sort_old"],
             ["購入日が新しい順", "purchase_date_latest"],
             ["購入日が古い順", "purchase_date_old"],
-            ["賞味期限が近い順", "expiration_date_latest"],
-            ["賞味期限が遠い順", "expiration_date_old"],
+            ["賞味期限が早い順", "expiration_date_latest"],
+            ["賞味期限が遅い順", "expiration_date_old"],
           ], {selected: params[:sort]}
     %>
     <%= f.submit "並び替え", class: "btn btn-primary btn-sm mr-3" %>
@@ -25,7 +25,7 @@
       <thead>
 		    <tr>
 		      <th>食材</th>
-	      	<th>購入日</th>
+	      	  <th>購入日</th>
 		      <th>賞味期限</th>
 		      <th>数量</th>
 		      <th>メモ</th>
@@ -39,7 +39,17 @@
               <td><%= ingredient.name %></td>
               <!-- 日付設定がされていない場合blank、されている場合は表示する-->
               <td><%= ingredient.purchase_date.blank? ? "" : ingredient.purchase_date.strftime("%Y/%m/%d") %></td>
-              <td><%= ingredient.expiration_date.blank? ? "" : ingredient.expiration_date.strftime("%Y/%m/%d") %></td>
+              <td>
+                  <% unless ingredient.expiration_date.blank? %>
+                    <% if ingredient.expiration_date > Date.today %>
+                      <%= ingredient.expiration_date.strftime("%Y/%m/%d") %>
+                    <% else %>  <!-- 賞味期限が過ぎていた場合-->     
+                  <span class="text-danger font-weight-bold">
+                      <%= ingredient.expiration_date.strftime("%Y/%m/%d") %><br>[賞味期限切れ]
+                  </span>
+                    <% end %>
+                  <% end %>
+              </td>
               <td><%= ActiveSupport::NumberHelper.number_to_rounded(ingredient.quantity, strip_insignificant_zeros: true) %><%= ingredient.unit %></td>
               <td>
                <% comment = ingredient.comments.first || @comment %>

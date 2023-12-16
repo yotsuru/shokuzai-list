@@ -1,4 +1,4 @@
-<h2>検索結果</h2>
+ <div class="text-center"><h2>検索結果</h2></div>
 <% if @ingredients.present? %>
   
 　<% if params[:method] == "expiration" %><!-- 賞味期限検索の場合 -->
@@ -37,6 +37,6 @@
        </tbody>
    </table>
 <% else %>
-   <div class="text-center">該当する食材は登録されていません。</div>
-    登録する場合は<%= link_to "こちら", new_ingredient_path %>から登録してください。
+   <div class="text-center">該当する食材は登録されていません。<br>
+    登録する場合は<%= link_to "こちら", new_ingredient_path %>から登録してください。</div>
 <% end %>

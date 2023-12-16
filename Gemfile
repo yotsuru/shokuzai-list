@@ -60,3 +60,5 @@ gem 'devise'
 gem 'miyabi'
 #カレンダー
 gem 'simple_calendar'
+#カレンダー日本語化
+gem 'rails-i18n'

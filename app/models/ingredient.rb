@@ -15,9 +15,9 @@ class Ingredient < ApplicationRecord
   # 購入日の新しい順、古い順
   scope :purchase_date_latest, -> {order(Arel.sql("purchase_date DESC NULLS LAST"))}
   scope :purchase_date_old, -> {order(Arel.sql("purchase_date ASC NULLS LAST"))}
-  # 賞味期限の遠い順、近い順
-  scope :expiration_date_latest, -> {order(Arel.sql("expiration_date DESC NULLS LAST"))}
-  scope :expiration_date_old, -> {order(Arel.sql("expiration_date ASC NULLS LAST"))}
+  # 賞味期限の早い順、遅い順
+  scope :expiration_date_latest, -> {order(Arel.sql("expiration_date ASC NULLS LAST"))}
+  scope :expiration_date_old, -> {order(Arel.sql("expiration_date DESC NULLS LAST"))}
   
   
   # 検索方法分岐

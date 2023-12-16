@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module ShokuzaiList
   class Application < Rails::Application
+    #カレンダー日本語化
+    config.i18n.default_locale = :ja
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
@@ -16,7 +19,7 @@ module ShokuzaiList
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = "Asia/Tokyo"
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
