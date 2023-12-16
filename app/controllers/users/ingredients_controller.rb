@@ -19,7 +19,7 @@ class Users::IngredientsController < ApplicationController
     when "expiration_date_old" then #賞味期限が近い順
       @ingredients = current_user.ingredients.expiration_date_old
     else
-      @ingredients = current_user.ingredients
+      @ingredients = current_user.ingredients.page(params[:page])
     end
     #食材のメモ機能
     @comment = Comment.new

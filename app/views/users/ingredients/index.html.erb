@@ -58,10 +58,11 @@
               <td><%= link_to "削除する", ingredient_path(ingredient.id), method: :delete, 
                   "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
     　　<% end %>
+    　　<%= paginate @ingredients %>
     　 </tbody>
   </table>
 <% else %>
-    <div class="text-center">現在食材は登録されていません。
+    <div class="text-center">現在食材は登録されていません。<br>
     登録する場合は<%= link_to "こちら", new_ingredient_path %>から登録してください。</div>
 <% end %>
  
