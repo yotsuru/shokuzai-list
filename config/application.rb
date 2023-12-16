@@ -8,9 +8,9 @@ Bundler.require(*Rails.groups)
 
 module ShokuzaiList
   class Application < Rails::Application
-    #カレンダー日本語化
+    #カレンダー日本語化、日曜始まり
     config.i18n.default_locale = :ja
-
+    config.beginning_of_week = :sunday
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 

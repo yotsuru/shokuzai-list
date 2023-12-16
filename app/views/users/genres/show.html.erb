@@ -1,8 +1,8 @@
 <h1><%= params[:id].to_i == 0 ? "なし" : @genre.name %></h1>
 <!-- ジャンル”なし”ではなければジャンル名編集-->
-<%= link_to "ジャンル名を変更する", edit_genre_path(@genre.id) unless params[:id].to_i == 0 %>
+<%= link_to "ジャンル名を変更する", edit_genre_path(@genre.id), class: "btn btn-success" unless params[:id].to_i == 0 %>
 <!-- ジャンル”なし”ではなければジャンル削除-->
-<%= link_to "このジャンルを削除する", genre_path(@genre.id), method: :delete, 
+<%= link_to "このジャンルを削除する", genre_path(@genre.id), class: "btn btn-danger", method: :delete, 
 "data-confirm" => "ジャンルを削除するとジャンル内の全ての食材のデータも削除されます。本当によろしいですか？" unless params[:id].to_i == 0 %><br>
     
 <% if @ingredients.present? %>
