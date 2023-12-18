@@ -26,7 +26,17 @@
          <td><%= ingredient.name %></td>
          <td><%= ingredient.genre.nil? ? "なし" : ingredient.genre.name %></td>
          <td><%= ingredient.purchase_date.blank? ? "" : ingredient.purchase_date.strftime("%Y/%m/%d") %></td>
-         <td><%= ingredient.expiration_date.blank? ? "" : ingredient.expiration_date.strftime("%Y/%m/%d") %></td>
+         <td>
+                  <% unless ingredient.expiration_date.blank? %>
+                    <% if ingredient.expiration_date > Date.today %>
+                      <%= ingredient.expiration_date.strftime("%Y/%m/%d") %>
+                    <% else %>  <!-- 賞味期限が過ぎていた場合-->     
+                  <span class="text-danger font-weight-bold">
+                      <%= ingredient.expiration_date.strftime("%Y/%m/%d") %><br>[賞味期限切れ]
+                  </span>
+                    <% end %>
+                  <% end %>
+         </td>
          <td><%= ActiveSupport::NumberHelper.number_to_rounded(ingredient.quantity, strip_insignificant_zeros: true) %><%= ingredient.unit %></td>
          <td>
               <% comment = ingredient.comments.first || @comment %>
