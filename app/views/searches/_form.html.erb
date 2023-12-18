@@ -14,10 +14,32 @@
     <div class="search_form">
     日付け検索
     <%= form_with url: search_by_date_path, local: true, method: :get do |f| %>
-      <%= f.select :method, [["賞味期限", "expiration"], ["購入日", "purchase"]], {selected: params[:method]} %>
+      <%= f.select :method, [["賞味期限", "expiration"], ["賞味期限切れ", "out_of_expiration"], ["購入日", "purchase"]], {selected: params[:method]} %>
       <%= f.select :date, (0..7).map{|day| [day == 0 ? "本日" : "#{day}日前", day]}, {selected: params[:date]} %>
   　　<%= f.submit '検索', class: 'btn btn-primary'  %>
 　　<% end %>
     </div>
   </div>
 <% end %>
+
+<script>
+  // ページがロードされた時
+  $(document).ready(function () {
+    // 検索メソッドが、賞味期限切れが選択されていれば
+    if ($("#method").val() == "out_of_expiration") {
+      $("#date").hide(); // 日付選択を隠す
+    } else {
+      $("#date").show(); // 日付選択を出す
+    }
+  });
+  
+  // 検索メソッドが、変更された時
+  $("#method").change(function () {
+    // 賞味期限切れの項目が選択されているかどうかで
+    if ($(this).val() == "out_of_expiration") {
+      $("#date").hide(); // 日付選択を隠す
+    } else {
+      $("#date").show(); // 日付選択を出す
+    }
+  });
+</script>

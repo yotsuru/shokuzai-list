@@ -1,10 +1,13 @@
+ <div class="my-4">
  <div class="text-center"><h2>検索結果</h2></div>
 <% if @ingredients.present? %>
   
 　<% if params[:method] == "expiration" %><!-- 賞味期限検索の場合 -->
     <h5><%= @start_date.strftime("%Y年%m月%d日") %>～<%= @end_date.strftime("%Y年%m月%d日") %>に賞味期限を迎えるもの</h5>
-  <% else %><!-- 購入日検索の場合 -->
+  <% elsif params[:method] == "purchase" %><!-- 購入日検索の場合 -->
     <h5><%= @end_date.strftime("%Y年%m月%d日") %>～<%= @start_date.strftime("%Y年%m月%d日") %>に購入したもの</h5>
+  <% else %>
+    <h5>賞味期限切れ</h5>
 　<% end %>
    <table class="table table-hover table-inverse">
      <thead>
@@ -40,3 +43,4 @@
    <div class="text-center">該当する食材は登録されていません。<br>
     登録する場合は<%= link_to "こちら", new_ingredient_path %>から登録してください。</div>
 <% end %>
+</div>
