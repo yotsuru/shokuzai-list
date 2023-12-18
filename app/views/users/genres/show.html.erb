@@ -1,3 +1,4 @@
+<div class="my-4">
 <h2><%= params[:id].to_i == 0 ? "なし" : @genre.name %></h2>
 <!-- ジャンル”なし”ではなければジャンル名編集-->
 <%= link_to "ジャンル名を変更する", edit_genre_path(@genre.id), class: "btn btn-success" unless params[:id].to_i == 0 %>
@@ -71,4 +72,5 @@
     <div class="text-center">このジャンルに食材は登録されていません。<br>
     登録する場合は<%= link_to "こちら", new_ingredient_path %>から登録してください。</div>
 <% end %>
+</div>
 

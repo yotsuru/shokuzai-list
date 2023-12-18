@@ -5,7 +5,6 @@ class Users::CommentsController < ApplicationController
     ingredient = Ingredient.find(params[:ingredient_id])
     comment = ingredient.comments.new(comment_params)
     comment.save
-    genre = ingredient.genre
     redirect_to request.referer
   end
   

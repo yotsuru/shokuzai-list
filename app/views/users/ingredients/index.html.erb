@@ -1,3 +1,4 @@
+<div class="my-4">
 <% if @ingredients.present? %>
 <h2>食材一覧</h2>
   <%= form_with url: ingredients_path, method: :get do |f| %>
@@ -58,11 +59,12 @@
               <td><%= link_to "削除する", ingredient_path(ingredient.id), method: :delete, 
                   "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
     　　<% end %>
-    　　<%= paginate @ingredients %>
-    　 </tbody>
-  </table>
+    　</tbody>
+    </table>
+    　<div class="d-flex justify-content-center"><%= paginate @ingredients %></div>
 <% else %>
     <div class="text-center">現在食材は登録されていません。<br>
     登録する場合は<%= link_to "こちら", new_ingredient_path %>から登録してください。</div>
 <% end %>
+</div>
  
