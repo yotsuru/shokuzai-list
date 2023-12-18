@@ -1,6 +1,7 @@
 <!--検索機能 -->
 <% if user_signed_in? %>
-  <div class="search_form">
+  <div class="d-flex justify-content-start">
+    <div class="search_form mx-5">
     検索
     <%= form_with url: search_path, local: true, method: :get do |f| %>
       <%= f.text_field :name, value: params[:name] %>
@@ -8,14 +9,15 @@
       <%= f.select :search, [["完全一致","perfect_match"], ["部分一致","partial_match"], ["前方一致","forward_match"], ["後方一致","backward_match"]], {selected: params[:search]} %>
       <%= f.submit "検索", class: "btn btn-primary" %>
     <% end %>
-  </div>
+    </div>
 <!--賞味期限、購入日　検索機能 --> 
-  <div class="search_form">
+    <div class="search_form">
     日付け検索
     <%= form_with url: search_by_date_path, local: true, method: :get do |f| %>
       <%= f.select :method, [["賞味期限", "expiration"], ["購入日", "purchase"]], {selected: params[:method]} %>
       <%= f.select :date, (0..7).map{|day| [day == 0 ? "本日" : "#{day}日前", day]}, {selected: params[:date]} %>
   　　<%= f.submit '検索', class: 'btn btn-primary'  %>
 　　<% end %>
+    </div>
   </div>
 <% end %>

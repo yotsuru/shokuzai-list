@@ -1,4 +1,4 @@
-<h1><%= params[:id].to_i == 0 ? "なし" : @genre.name %></h1>
+<h2><%= params[:id].to_i == 0 ? "なし" : @genre.name %></h2>
 <!-- ジャンル”なし”ではなければジャンル名編集-->
 <%= link_to "ジャンル名を変更する", edit_genre_path(@genre.id), class: "btn btn-success" unless params[:id].to_i == 0 %>
 <!-- ジャンル”なし”ではなければジャンル削除-->
@@ -6,6 +6,7 @@
 "data-confirm" => "ジャンルを削除するとジャンル内の全ての食材のデータも削除されます。本当によろしいですか？" unless params[:id].to_i == 0 %><br>
     
 <% if @ingredients.present? %>
+<div class="my-3" >
  <%= form_with url: genre_path(params[:id].to_i == 0 ? 0 : @genre.id), method: :get do |f| %>
     <%= f.select :sort, 
           [
@@ -20,8 +21,9 @@
     %>
     <%= f.submit "並び替え", class: "btn btn-primary btn-sm mr-3" %>
     <% end %>
+</div>
     
-    <table class="table table-hover table-bordered table-condensed">
+    <table class="table table-hover table-bordered table-condensed mx-3">
       <thead>
 		    <tr>
 		      <th>食材</th>

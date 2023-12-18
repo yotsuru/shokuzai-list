@@ -1,3 +1,4 @@
+<div class="my-4"> 
  <%= form_with model: @genre, url: genres_path, method: :post do |f| %>
     <div class="form-group">
         <%= f.label :ジャンル登録 %>
@@ -6,9 +7,10 @@
     <div class="form-group">
         <%= f.submit "登録する" %>
     </div>
+</div>
  <% end %>
 <% if @genres.present? %>
- <h1>全ジャンル　一覧</h1>
+ <h2>全ジャンル　一覧</h2>
  <%= form_with url: genres_path, method: :get do |f| %>
     <%= f.select :sort, 
           [
