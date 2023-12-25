@@ -29,9 +29,6 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材
-フリーイラスト画像として以下を使用 <br>
-パブリックドメインQ：著作権フリー画像素材集(https://publicdomainq.net/images/201804/14s/publicdomainq-0020998qdy.jpg)  
 
 実装機能リストのURL <br>
 https://docs.google.com/spreadsheets/d/12v9V_UBiFKLw4wIRvcXymAAKps-opYA7TDIMM1xHHv8/edit#gid=375590402
