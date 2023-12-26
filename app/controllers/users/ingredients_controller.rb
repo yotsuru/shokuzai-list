@@ -5,19 +5,19 @@ class Users::IngredientsController < ApplicationController
     case params[:sort]
     when "name_sort" then #50音順
                                                        #漢字、カタカナをひらがなに変換して並べる
-      @ingredients = current_user.ingredients.sort_by {|i| [i.name.to_kanhira.to_hira, i]}
+      @ingredients = Kaminari.paginate_array(current_user.ingredients.sort_by {|i| [i.name.to_kanhira.to_hira, i]}).page(params[:page])
     when "date_sort_latest" then #登録が新しい順
-      @ingredients = current_user.ingredients.latest
+      @ingredients = current_user.ingredients.latest.page(params[:page])
     when "date_sort_old" then #登録が古い順
-      @ingredients = current_user.ingredients.old
+      @ingredients = current_user.ingredients.old.page(params[:page])
     when "purchase_date_latest" then #購入日が新しい順
-      @ingredients = current_user.ingredients.purchase_date_latest
+      @ingredients = current_user.ingredients.purchase_date_latest.page(params[:page])
     when "purchase_date_old" then #購入日が古い順
-      @ingredients = current_user.ingredients.purchase_date_old
+      @ingredients = current_user.ingredients.purchase_date_old.page(params[:page])
     when "expiration_date_latest" then #賞味期限が遠い順
-      @ingredients = current_user.ingredients.expiration_date_latest
+      @ingredients = current_user.ingredients.expiration_date_latest.page(params[:page])
     when "expiration_date_old" then #賞味期限が近い順
-      @ingredients = current_user.ingredients.expiration_date_old
+      @ingredients = current_user.ingredients.expiration_date_old.page(params[:page])
     else
       @ingredients = current_user.ingredients.page(params[:page])
     end
@@ -33,7 +33,7 @@ class Users::IngredientsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.genre_id = ingredient_params[:genre_id].blank? ? nil : ingredient_params[:genre_id]
     @ingredient.user_id = current_user.id
-    if @ingredient.save!
+    if @ingredient.save# !をつけるならtry catch
       redirect_to @ingredient.genre_id.nil? ? genre_path(0) : genre_path(@ingredient.genre)
     else
       render :new
