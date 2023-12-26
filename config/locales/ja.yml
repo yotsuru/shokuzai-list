@@ -1,5 +1,8 @@
 ---
 ja:
+  simple_calendar:
+    previous: "<< 前月"
+    next: "翌月 >>"
   views:
     pagination:
       first: "&laquo; 最初"

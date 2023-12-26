@@ -3,11 +3,14 @@
 <% if user_signed_in? %>
         <h1><%= link_to "食財リスト", root_path %></h1>
         
+        <h5><%= I18n.l(Date.parse(Time.current.to_s), format: :long) %></h5>
+        
         <%= link_to "ログアウト", destroy_user_session_path,class:"mx-2 bg-white font-weight-bold", method: :delete %>
         <%= link_to "マイページ", users_mypage_path,class:"mx-2 bg-white font-weight-bold" %>
         <%= link_to "食材登録", new_ingredient_path,class:"mx-2 bg-white font-weight-bold" %>
         <%= link_to "食材一覧", ingredients_path,class:"mx-2 bg-white font-weight-bold" %>
         <%= link_to "ジャンル", genres_path,class:"mx-2 bg-white font-weight-bold" %>
+        
       
 <% else %>
         <h1><%= link_to "食財リスト", root_path %></h1>
