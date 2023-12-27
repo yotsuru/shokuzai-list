@@ -1,5 +1,18 @@
 ---
 ja:
+  activerecord:
+    models:
+      ingredient: 食材
+      user: ユーザー
+    attributes:
+      ingredient:
+        name: 食材名
+        quantity: 数量
+      user:
+        last_name: 氏名
+        first_name: 氏名
+        email: メールアドレス
+ 
   simple_calendar:
     previous: "<< 前月"
     next: "翌月 >>"

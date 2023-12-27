@@ -1,0 +1,7 @@
+<% if errors.errors.any? %>
+    <ul>
+        <% errors.errors.full_messages.each do |error| %>
+            <li class="text-danger font-weight-bold"><%= error %></li>
+        <% end %>
+    </ul>
+<% end %>

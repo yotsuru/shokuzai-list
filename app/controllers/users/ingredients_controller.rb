@@ -4,7 +4,7 @@ class Users::IngredientsController < ApplicationController
   def index
     case params[:sort]
     when "name_sort" then #50音順
-                                                       #漢字、カタカナをひらがなに変換して並べる
+                                                                              #漢字、カタカナをひらがなに変換して並べる
       @ingredients = Kaminari.paginate_array(current_user.ingredients.sort_by {|i| [i.name.to_kanhira.to_hira, i]}).page(params[:page])
     when "date_sort_latest" then #登録が新しい順
       @ingredients = current_user.ingredients.latest.page(params[:page])
@@ -33,9 +33,10 @@ class Users::IngredientsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.genre_id = ingredient_params[:genre_id].blank? ? nil : ingredient_params[:genre_id]
     @ingredient.user_id = current_user.id
-    if @ingredient.save# !をつけるならtry catch
+    if @ingredient.save
       redirect_to @ingredient.genre_id.nil? ? genre_path(0) : genre_path(@ingredient.genre)
     else
+      flash.now[:alert] = "必要事項が入力されていません。"
       render :new
     end
   end
@@ -45,9 +46,13 @@ class Users::IngredientsController < ApplicationController
   end
   
   def update
-    ingredient = Ingredient.find(params[:id])
-    ingredient.update(ingredient_params)
-    redirect_to ingredient.genre_id.nil? ? genre_path(0) : genre_path(ingredient.genre) 
+    @ingredient = Ingredient.find(params[:id])
+    if @ingredient.update(ingredient_params)
+      redirect_to ingredient.genre_id.nil? ? genre_path(0) : genre_path(ingredient.genre)
+    else
+      flash.now[:alert] = "必要事項が入力されていません。"
+      render :edit
+    end
   end
   
   def destroy

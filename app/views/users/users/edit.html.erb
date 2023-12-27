@@ -1,6 +1,6 @@
 <div class="my-4">
 <h2>ユーザー情報編集</h2>
-      
+  <%= render 'layouts/errors', errors: @user %>
   <%= form_with model: @user, url: update_user_path ,method: :patch do |f| %>
 
      <div class="row field my-3 ml-3">
@@ -8,7 +8,7 @@
         <%= f.text_field :last_name %>
         <%= f.text_field :first_name %>
      </div>
-     <div class="row field my-3 ml-3"> 
+     <div class="row field my-3 ml-3">
         <%= f.label :"フリガナ" %>
         <%= f.text_field :last_name_kana %>
         <%= f.text_field :first_name_kana %>

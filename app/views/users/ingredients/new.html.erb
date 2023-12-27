@@ -1,4 +1,6 @@
 <h2>食材　登録</h2>
+<%= render 'layouts/errors', errors: @ingredient %>
+
 <%= form_with model: @ingredient, url: ingredients_path, method: :post do |f| %>
     <div class="form-group">
         <%= f.label :ジャンル %>
