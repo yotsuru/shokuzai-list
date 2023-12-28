@@ -6,4 +6,11 @@ class User < ApplicationRecord
          
   has_many :genres, dependent: :destroy
   has_many :ingredients, dependent: :destroy
+  
+  with_options presence: true do
+    validates :last_name
+    validates :first_name
+    validates :last_name_kana
+    validates :first_name_kana
+  end
 end
