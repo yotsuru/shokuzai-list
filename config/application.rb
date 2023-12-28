@@ -23,7 +23,7 @@ module ShokuzaiList
     # config.active_record.default_timezone = :local
     # config.eager_load_paths << Rails.root.join("extras")
     
-    #エラーメッセージ
+    #レイアウト崩れ防止
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end
