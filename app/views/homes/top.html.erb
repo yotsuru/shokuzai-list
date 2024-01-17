@@ -1,5 +1,10 @@
 <div class="my-4"> 
 
+<h3 class="text-center">食財リストへようこそ！<br>食材はあなたの大切な<u>財産</u>です。食材を無駄にしないよう、しっかり記録し管理しましょう。
+</h3>
+
+<div class="my-5">
+<h4 class="text-center">賞味期限一覧カレンダー</h4>
 <%= month_calendar(events: @ingredients, attribute: :expiration_date, end_attribute: :expiration_date) do |date, ingredients| %>
   <%= date.day %>
 　<% ingredients.each do |ingredient| %>
@@ -8,6 +13,7 @@
     </div>
   <% end %>
 <% end %>
+</div>
 </div>
  
 
