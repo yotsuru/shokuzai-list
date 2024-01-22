@@ -48,7 +48,7 @@ class Users::IngredientsController < ApplicationController
   def update
     @ingredient = Ingredient.find(params[:id])
     if @ingredient.update(ingredient_params)
-      redirect_to ingredient.genre_id.nil? ? genre_path(0) : genre_path(ingredient.genre)
+      redirect_to @ingredient.genre_id.nil? ? genre_path(0) : genre_path(@ingredient.genre)
     else
       flash.now[:alert] = "必要事項が入力されていません。"
       render :edit
